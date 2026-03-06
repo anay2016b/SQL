@@ -18,3 +18,5 @@ INSERT INTO Product(ProductID, ProductName, Price, Size) VALUES
     (11, 'Coffee', 6.99, 'Regular'),
     (12, 'Coffee', 8.99, 'Large');
 DELETE FROM Product;
+SELECT COUNT(Size), ProductID
+FROM Product GROUP BY Size;
