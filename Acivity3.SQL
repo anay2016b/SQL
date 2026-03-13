@@ -13,10 +13,13 @@ INSERT INTO Customer(CustomerID, CustomerName, CountryName) VALUES
     (7, 'David Lee', 'China'),
     (8, 'Sarah Miller', 'Australia'),
     (9, 'Michael Anderson', 'Australia'),
-    (10, 'Jessica Taylor', 'UK');
+    (10, 'Jessica Taylor', 'UK'),
+    (11, '', NULL);
+    
 SELECT * FROM Customer;
 SELECT COUNT(CustomerID), CountryName
 FROM Customer GROUP BY CountryName;
 SELECT * FROM Customer
 ORDER BY CustomerName ASC;
 DELETE FROM Customer;
+SELECT * FROM Customer WHERE CountryName IS NOT NULL;

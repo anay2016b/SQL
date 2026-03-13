@@ -17,6 +17,7 @@ INSERT INTO Department(DepartmentID, EmployeeID, DepartmentName, EmployeeName, S
     (9, 109, 'Marketing', 'Michael Anderson', 47000),
     (10, 110, 'Sales', 'Jessica Taylor', 72000);
 SELECT * FROM Department;
+SELECT * FROM Department WHERE Salary BETWEEN 55000 AND 80000;
 SELECT COUNT(EmployeeID), DepartmentName
 FROM Department GROUP BY DepartmentName;
 SELECT DepartmentID, SUM(Salary) FROM Department GROUP BY DepartmentID;
