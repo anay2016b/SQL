@@ -12,23 +12,24 @@ INSERT INTO Salesman(SalesmanID, SalesmanName, city, Commission) VALUES
     (5005, 'Charlie Davis', 'Phoenix', 0.2),
     (5006, 'Emily Wilson', 'Philadelphia', 0.18);
 
-CREATE TABLE IF NOT EXISTS Customer2(
+CREATE TABLE IF NOT EXISTS Customer1(
     CustomerID Int,
+    SalesmanID Int,
     CustomerName varchar(255),
     city varchar(255)
 );
 
-INSERT INTO Customer2(CustomerID, CustomerName, city) VALUES
-    (6001, 'Michael Anderson', 'New York'),
-    (6002, 'Jessica Taylor', 'Los Angeles'),
-    (6003, 'David Lee', 'Chicago'),
-    (6004, 'Sarah Miller', 'Houston'),
-    (6005, 'Robert Clark', 'Phoenix'),
-    (6006, 'Sophia Brown', 'Philadelphia'),
-    (6007, 'William Davis', 'Chicago'),
-    (6008, 'Olivia Wilson', 'Houston'),
-    (6009, 'James Martinez', 'Phoenix'),
-    (6010, 'Isabella Garcia', 'Philadelphia');
+INSERT INTO Customer1(CustomerID, SalesmanID, CustomerName, city) VALUES
+    (6001, 5001, 'Michael Anderson', 'New York'),
+    (6002, 5002, 'Jessica Taylor', 'Los Angeles'),
+    (6003, 5003, 'David Lee', 'Chicago'),
+    (6004, 5004, 'Sarah Miller', 'Houston'),
+    (6005, 5005, 'Robert Clark', 'Phoenix'),
+    (6006, 5006, 'Sophia Brown', 'Philadelphia'),
+    (6007, 5003, 'William Davis', 'Chicago'),
+    (6008, 5004, 'Olivia Wilson', 'Houston'),
+    (6009, 5005, 'James Martinez', 'Phoenix'),
+    (6010, 5006, 'Isabella Garcia', 'Philadelphia');
 
 CREATE TABLE IF NOT EXISTS Orders(
     OrderID Int,
@@ -50,7 +51,21 @@ INSERT INTO Orders(OrderID, SalesmanID, CustomerID, Amount, OrderDate) VALUES
     (7009, 5005, 6009, 1300, '2024-09-10'),
     (7010, 5006, 6010, 900, '2024-10-05');
 
-SELECT Customer2.CustomerName, Salesman.SalesmanName, Orders.Amount
-FROM Customer2
-JOIN Salesman ON Customer2.city = Salesman.city
-JOIN Orders ON Salesman.SalesmanID = Orders.SalesmanID;
+SELECT Customer1.CustomerName, Salesman.SalesmanName, Orders.Amount
+FROM Customer1
+JOIN Salesman ON Customer1.city = Salesman.city;
+SELECT Customer1.CustomerName, Salesman.SalesmanName
+FROM Customer1
+JOIN Salesman ON Customer1.SalesmanID = Salesman.SalesmanID;
+SELECT Orders.OrderID, Customer1.CustomerName, Salesman.SalesmanName, Orders.CustomerID, Orders.SalesmanID 
+FROM Orders
+JOIN Customer1 ON Orders.CustomerID = Customer1.CustomerID
+JOIN Salesman ON Orders.SalesmanID = Salesman.SalesmanID
+WHERE Customer1.city <> Salesman.city;
+SELECT Orders.OrderID, Customer1.CustomerName
+FROM Orders
+JOIN Customer1 ON Orders.CustomerID = Customer1.CustomerID;
+SELECT Customer1.CustomerName AS "Customer", Salesman.SalesmanName AS "Salesman", Customer1.city AS "City"
+FROM Customer1
+JOIN Salesman ON Customer1.SalesmanID = Salesman.SalesmanID
+WHERE Salesman.Commission BETWEEN 0.11 AND 0.17;
