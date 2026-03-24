@@ -264,7 +264,12 @@ LEFT JOIN EmployeeLowerWorkersG2 ON Department1.DepartmentName = EmployeeLowerWo
 LEFT JOIN EmployeeLowerWorkersG3 ON Department1.DepartmentName = EmployeeLowerWorkersG3.DepartmentName
 GROUP BY Department1.DepartmentName;
 
+-- Check for employees with letter a in their name --
 
+SELECT COUNT(*) FROM Employee_Heads1 WHERE EmployeeName LIKE '%a%';
+SELECT COUNT(*) FROM EmployeeLowerWorkersG1 WHERE Name LIKE '%a%';
+SELECT COUNT(*) FROM EmployeeLowerWorkersG2 WHERE Name LIKE '%a%';
+SELECT COUNT(*) FROM EmployeeLowerWorkersG3 WHERE Name LIKE '%a%';
 
 DELETE FROM Employee_Heads1;
 DELETE FROM Department1;
