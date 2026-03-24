@@ -1,9 +1,9 @@
-CREATE TABLE Customer(
+CREATE TABLE IF NOT EXISTS Customer1(
     CustomerID Int,
     CustomerName varchar(255),
     CountryName varchar(255)
 );
-INSERT INTO Customer(CustomerID, CustomerName, CountryName) VALUES
+INSERT INTO Customer1(CustomerID, CustomerName, CountryName) VALUES
     (1, 'John Doe', 'USA'),
     (2, 'Jane Smith', 'New Zealand'),
     (3, 'Alice Johnson', 'Canada'),
@@ -16,10 +16,10 @@ INSERT INTO Customer(CustomerID, CustomerName, CountryName) VALUES
     (10, 'Jessica Taylor', 'UK'),
     (11, '', NULL);
     
-SELECT * FROM Customer;
+SELECT * FROM Customer1;
 SELECT COUNT(CustomerID), CountryName
-FROM Customer GROUP BY CountryName;
-SELECT * FROM Customer
+FROM Customer1 GROUP BY CountryName;
+SELECT * FROM Customer1
 ORDER BY CustomerName ASC;
-DELETE FROM Customer;
-SELECT * FROM Customer WHERE CountryName IS NOT NULL;
+DELETE FROM Customer1;
+SELECT * FROM Customer1 WHERE CountryName IS NOT NULL;
